@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+
+	<!-- <property file="${config.path}/log.properties" /> -->
+
+	<property name="log.folder" value="log" />
+	<property name="log.app.fileName" value="ride.log" />
+	<property name="log.level" value="DEBUG" />
+
+
+
+	<appender name="RollingFile"
+			  class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.folder}/${log.app.fileName}</File>
+		<encoder>
+			<pattern>%d{YYYY-MM-dd HH:mm:ss.SSS z} -APP- %X{HOST}
+				%X{commonRequestIdentifier} [%t] %.-5level %logger{36}.%M-%L - %msg
+				%n</pattern>
+		</encoder>
+
+	</appender>
+	<appender name="Console"
+			  class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{YYYāY-MM-dd HH:mm:ss.SSS z} -APP- %X{HOST}
+				%X{commonRequestIdentifier} [%t] %.-5level %logger{36}.%M-%L - %msg
+				%n</pattern>Ū
+		</encoder>
+	</appender>
+
+	<root level="INFO">
+		<appender-ref ref="RollingFile" />
+		<appender-ref ref="Console" />
+	</root>
+
+
+</configuration>
